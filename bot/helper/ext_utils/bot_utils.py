@@ -233,16 +233,16 @@ def timeformatter(milliseconds: int) -> str:
     return tmp[:-2]
 
 def get_progress_bar_string(status):
-    completed = status.processed_bytes() / 10
-    total = status.size_raw() / 10
+    completed = status.processed_bytes() / 8
+    total = status.size_raw() / 8
     p = 0 if total == 0 else round(completed * 100 / total)
     p = min(max(p, 0), 100)
-    cFull = p // 10
-    cPart = p % 10 - 1
+    cFull = p // 8
+    cPart = p % 8 - 1
     p_str = config_dict['FINISHED_PROGRESS_STR'] * cFull
     if cPart >= 0:
         p_str += config_dict['MULTI_WORKING_PROGRESS_STR'][cPart]
-    p_str += config_dict['UN_FINISHED_PROGRESS_STR']  * (10 - cFull)
+    p_str += config_dict['UN_FINISHED_PROGRESS_STR']  * (12 - cFull)
     return f"[{p_str}]"
 
 
